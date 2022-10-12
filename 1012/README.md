@@ -6,5 +6,5 @@
 
 ### 링크
 [슬라이드링크](https://github.com/snowypark/GameProgramming/blob/master/1012/%EC%98%A4%EB%AA%A9ppt.pdf)
-[변경코드] (https://github.com/snowypark/GameProgramming/blob/master/1012/%EB%B3%80%EA%B2%BD%20%ED%9B%84%20%EC%BD%94%EB%93%9C/%EC%98%A4%EB%AA%A9%EA%B2%8C%EC%9E%84.cpp)
 
+[변경코드](https://github.com/snowypark/GameProgramming/blob/master/1012/%EB%B3%80%EA%B2%BD%20%ED%9B%84%20%EC%BD%94%EB%93%9C/%EC%98%A4%EB%AA%A9%EA%B2%8C%EC%9E%84.cpp)
