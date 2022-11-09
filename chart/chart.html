@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>차트</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+    <style>
+        h1{
+            text-align: center;
+        }
+        canvas{
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>소고기 소비량 차트</h1>
+    <hr>
+    <br><br><br>
+   
+    <div>
+        <canvas id="line-chart" width="1000" height="700"></canvas>
+
+        <script>
+            new Chart(document.getElementById("line-chart"), {
+                type: 'line',
+                data: {
+                    labels: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018],
+                    datasets: [{
+                        data: [14322, 14977, 13536, 18546, 17049, 21034, 22628, 21747, 26460],
+                        label: " 추석 전 구매액",
+                        borderColor: "#c45850",
+                        fill: false
+                    },
+
+                    {
+                        data: [7745, 7916, 8503, 8953, 9262, 9234, 9297, 10098, 9605],
+                        label: "평소 구매액",
+                        borderColor: "#3e95cd",
+                        fill: false
+                    }
+                    ]
+                },
+
+                options: {
+                    responsive: false,
+                    title: {
+                        
+                        text: '추석 전후 소고기 소비량 변화',
+
+                    }
+                }
+            });    
+        </script>
+    </div>
+
+    <hr>
+
+    <div>
+        <canvas id="bar-chart" width="1000" height="700"></canvas>
+        <script>
+            new Chart(document.getElementById("bar-chart"), {
+                type: 'bar',
+                data: {
+                    labels: ["2009", "2011", "2013", "2015", "2017", "2019"],
+                    datasets: [
+                        {
+                            label: "1인당 소비량",
+                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "rgba(255,99,132,1)"],
+                            data: [8.3, 10.2, 10.3, 10.7, 11.3, 13]
+                        }
+                    ]
+                },
+                options: {
+                    responsive: false,
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: '1인당 소고기 소비량 현황'
+                    }
+                }
+            });
+        </script>
+    </div>
+
+    <hr>
+    <br>
+
+    <div>
+        <canvas id="mixed-chart" width="1000" height="700"></canvas>
+        <script>
+
+            new Chart(document.getElementById("mixed-chart"), {
+                type: 'bar',
+                data: {
+                    labels: ["2017", "2018", "2019", "2020",],
+                    datasets: [{
+                        label: "생산량",
+                        type: "line",
+                        borderColor: "#8e5ea2",
+                        data: [238, 237, 246, 249],
+                        fill: false
+                    }, {
+                        label: "수입량",
+                        type: "line",
+                        borderColor: "#3e95cd",
+                        data: [344, 417, 426, 421],
+                        fill: false
+                    }, {
+                        label: "생산량",
+                        type: "bar",
+                        backgroundColor: "rgba(0,0,0,0.2)",
+                        data: [238, 237, 246, 249],
+                    }, {
+                        label: "수입량",
+                        type: "bar",
+                        backgroundColor: "rgba(0,0,0,0.2)",
+                        backgroundColorHover: "#3e95cd",
+                        data: [344, 417, 426, 421]
+                    }
+                    ]
+                },
+                options: {
+                    responsive: false,
+                    title: {
+                        display: true,
+                        text: '소고기 국내 생산량과 수입량 비교'
+                    },
+                    legend: { display: true }
+                }
+            });
+        </script>
+    </div>
+
+</body>
+
+</html>
