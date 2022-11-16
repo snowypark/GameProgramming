@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<!--<html lang="en">-->
+<html lang="en" manifest="cache.manifest">
+<head>
+	<meta charset="utf-8" />
+	<title>팩맨 업그레이드 버전</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="pacman-canvas.css">
+	<link rel="manifest" href="manifest.json">
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+
+	<link rel="stylesheet"
+ 	 href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+ 	 integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+ 	 crossorigin="anonymous" />
+
+	<!-- SEO Stuff -->
+    <meta name="description" content="Play Pacman Canvas for free on your desktop or mobile. This whole game is open source an was created in HTML5." />
+    <link rel="canonical" href="http://pacman.platzh1rsch.ch/" />
+    <meta name="author" content="platzh1rsch.ch" />
+    <meta name="publisher" content="platzh1rsch.ch" />
+    <meta name="copyright" content="&copy; Copyright (c) platzh1rsch.ch" />
+    <meta name="robots" content="index,follow" />
+    <meta http-equiv="content-language" content="de">
+    <meta name="language" content="de">
+    <meta name="page-topic" content="Games/Arcade" />
+
+    <meta content="National" name="distribution" />
+    <meta content="pacman.platzh1rsch.ch" name="target" />
+
+   	<!-- Facebook Open Graph Information -->
+	<meta property="og:image" content="http://pacman.platzh1rsch.ch/img/Icon-200x200.png"/>
+    <meta property="og:title" content="Pacman Canvas in HTML5" />
+	<meta property="og:description" content="Play Pacman Canvas for free on your desktop or mobile. This whole game is open source an was created in HTML5." />
+    <meta property="og:url" content="http://pacman.platzh1rsch.ch/" />
+    <meta property="og:site_name" content="Pacman Canvas in HTML5" />
+	<meta property="og:locale" content="en_US" />
+
+	<!-- site icons -->
+	<link rel="shortcut icon" href="img/Icon-130x130.png" />
+	<link rel="apple-touch-icon" href="img/Icon-130x130.png" />
+
+    <meta property="og:image" content="http://pacman.platzh1rsch.ch/img/Icon-130x130.png"/>
+
+	<!-- AppsFuel verification code -->
+	<meta name="appsfuel_code" content="83d3cedc1050a5c"/>
+	
+	<!-- Mobile Viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+	
+	<!-- Apple Mobile Web Capability -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	
+	<!-- Script -->
+	<script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
+	<script src="js/jquery.hammer.min.js" type="text/javascript"></script>
+	
+	<!-- Google Analytics -->
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-28993174-1']);
+	  _gaq.push(['_setDomainName', 'pacman.platzh1rsch.ch']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+	
+</head>
+
+<body>
+
+	<header class="intro">
+		<h1 class="intro__title" lang="en" aria-label="팩맨 게임 업그레이드."></h1>
+		<div class="intro__button" aria-hidden="true"></div>
+	</header>
+
+	<script>
+		const introTitle = document.getElementsByClassName("intro__title")[0];
+		// 타이틀 문구 타이핑
+		const title = "Hello,\n Pacman \n Upgrade!";
+		let cnt = 0;
+		let timer = 0;
+		function typingIntroTitle() {
+			let character = title[cnt++];
+
+			if (character === "\n") {
+				introTitle.innerHTML = introTitle.innerHTML + "<br/>";
+			} else {
+				introTitle.innerHTML = introTitle.innerHTML + character;
+			}
+			if (cnt === title.length) {
+				clearInterval(timer);				
+				return;
+			}
+		}
+		window.onload = function() {
+				timer = setInterval(typingIntroTitle, 200);
+		}
+	</script>
+
+
+<div class="container" id="container">
+<div class="main">
+
+
+<!-- Display this message if Javascript is disabled -->
+<noscript>
+<h2>Enable Javascript!</h2>
+<p>This HTML 5 app requires Javascript to run. Please check that Javascript is enabled in your browser.</p>
+</noscript>
+
+<!-- Highscore -->
+<div class="btn-group" role="group" aria-label="Basic example">
+<div class="content" id="highscore-content">
+	
+	<div class="button"  id="back" >
+	<button type="button" class="btn btn-secondary">
+		뒤로가기
+	</button></div>
+
+	<div>
+		<h1>최고점수</h1>
+		<p>
+			<ol id="highscore-list">
+				
+			</ol>
+		</p>
+	</div>
+</div>
+
+<!-- INSTRUCTIONS -->
+<div class="content" id="instructions-content">
+	<div class="button" id="back">
+		<button type="button" id="back" class="btn btn-secondary">
+			&lt; 뒤로가기
+		</button>
+	</div>
+	<div>
+		<h1>설명</h1>
+		<div class="nomobile">
+			<h2>컨트롤</h2>
+			<p>[W,A,S,D] 혹은 방향키, 버튼을 이용하세요.</p>
+			<p>일시 정지 - 마우스 클릭, 스페이스바 키를 누르세요.</p>
+		</div>
+		<div class="mobile">
+			<h2>컨트롤</h2>
+			<p>Use swipe gestures to navigate pacman.</p>
+			<p>Alternatively use the Arrow Buttons underneath the game area to navigate pacman.</p>
+			<p>To pause / resume the game, touch the game area once.</p>
+		</div>
+
+		<div>
+			<h2>다이어트를 방해하는 유령들</h2>
+			<p>유령들은 팩맨을 사냥합니다.</p>
+			<p>모든 유령은 팩맨을 추격하는 전략이 있습니다.</p>
+			<h3>피자<img src="img/inky.png" class="pull-right"></h3>
+			피자는 팩맨이 30알을 먹을 때까지 유령의 집에서 기다립니다. 오른쪽 아래에서 활동합니다.
+			<h3>치킨 <img src="img/blinky.png" class="pull-right"></h3>
+			치킨은 네 유령 중 가장 공격적입니다. 바로 쫓기 시작하며, 오른쪽 위에서 활동합니다.
+			<h3>햄버거<img src="img/pinky.png" class="pull-right"></h3>
+			햄버거는 팩맨을 바로 쫓기 시작합니다. 왼쪽 필드에서 움직입니다.
+			<h3>도넛<img src="img/clyde.png" class="pull-right"></h3>
+			도넛은 팩맨이 알약의 2/3을 먹을 때까지 유령의 집에 있습니다. 왼쪽 아래에서 활동합니다.
+		</div>
+
+		<div>
+			<h2>유령 모드</h2>
+			유령들은 두 가지 모드가 있습니다.
+			<h3>일반 모드</h3>
+			<p>기본 버전입니다. 활동 구역에서 머무릅니다.</p>
+			<img src="img/instructions/instructions_scatter.PNG">
+			<h3>도전 모드</h3>
+			<p>일정 시간이 지나면 유령은 팩맨을 빠르게 추격합니다. 이때 벽의 색상이 변경됩니다.</p>
+			<img src="img/instructions/instructions_chase.PNG">
+		</div>
+
+		<div>
+			<h2>아이템</h2>
+			<h3>알약</h3>
+			<p>게임의 목표는 유령에게 잡히지 않고 모든 알약을 먹는 것입니다. 1알에 1점입니다.</p>
+			<h3>큰 알약</h3>
+			<p>4개의 커다란 알약이 모서리에 있습니다. 팩맨이 먹으면 유령을 잡아먹을 수 있으며, 10점입니다.</p>
+			<img src="img/instructions/instructions_powerpill.PNG">
+			<p>유령을 먹으면 100점을 얻습니다. 유령은 시간이 지나면 다시 원래대로 돌아갑니다.</p>
+		</div>
+
+	</div>
+</div>
+
+<!-- Info -->
+<div class="content" id="info-content">
+
+	<div class="button" id="back">
+		<button type="button" id="back" class="btn btn-secondary">
+			&lt; 뒤로가기
+		</button>
+	</div>
+
+	<div>
+		<h1>버전 정보</h1>
+		<p>Current Version: <span class="app-version">1.0.6 (2022-08-14)</span></p>
+		<p>Pacman Canvas is Open Source, written by <a href="http://platzh1rsch.ch">platzh1rsch</a>. You can get the code on <a target="_blank" href="https://github.com/platzhersh/pacman-canvas" target="_blank">github</a>.</p>
+		<hr><br>	
+		<img src="img/apple.png">	<img src="img/apple.png">	<img src="img/apple.png">	<img src="img/apple.png">	
+		<p>팩맨 업그레이드 : snowy // <a target="_blank" href="https://github.com/snowypark" target="_blank">github</a>.</p>
+	</div>
+</div>
+
+
+
+<!-- main game content -->
+<div class="content" id="game-content">
+
+		<!-- Google AdSense -->
+		<div id="adsense">
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<ins class="adsbygoogle"
+			     style="display:inline-block;width:320px;height:50px"
+			     data-ad-client="ca-pub-0176206735745791"
+			     data-ad-slot="6492298622"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		</div>
+	
+	
+	<!-- main game content -->
+	<div class="game wrapper">
+	
+		<div class="score">점수 :</div>
+		<div class="level">Lv l:</div>
+		<div class="lives">생명 : </div>
+		
+		<div class="controlSound">
+			<img src="img/audio-icon-mute.png" id="mute">
+		</div>
+		<!-- canvas is splitted into 18x13 fields -->
+		<div id="canvas-container">
+			<div id="canvas-overlay-container">
+				<div id="canvas-overlay-content">
+					<div id="title">리뉴얼 팩맨 게임</div>
+					<div><p id="text">클릭 시 시작</p></div>
+				</div>
+			</div>
+			<canvas id="myCanvas" width="540" height="390">
+			<p>Canvas not supported</p>
+			</canvas>
+		</div>
+
+		<div class="controls" id="game-buttons">
+		<!-- Will be moved to Instructions 
+		<p class="nomobile">Use W-A-S-D keys to navigate Pac-Man</p>
+		-->
+		
+			<!-- OLD Buttons -->
+			<div>
+				<span id="up" class="controlButton">&uarr;</span>
+			</div>
+			<div>
+				<span id="left" class="controlButton">&larr;</span>
+				<span id="down" class="controlButton">&darr;</span>
+				<span id="right" class="controlButton">&rarr;</span>
+			</div>
+			
+		</div>
+		<!-- inGame Controls End -->
+		
+		<!-- Game Menu -->		
+		<div class="controls" id="menu-buttons">
+			<ul>
+				<li class="button" id="newGame">새 게임</li>
+				<li class="button" id="highscore">최고 점수</li>
+				<li class="button" id="instructions">설명</li>
+				<li class="button" id="info">정보</li>
+			</ul>
+			
+		</div>
+		<!-- Game Menu End -->
+		
+	</div>
+		
+	<div class="description nomobile">
+		<p>This whole thing was written in HTML5, CSS3 and Javascript (using small bits of jquery). For the basics I was following the <a href="http://devhammer.net/blog/exploring-html5-canvas-part-1---introduction" target="_blank">"Exploring HTML5 Canvas"</a> Tutorials (Part 1 - 6) by Devhammer. Thanks for the great Tutorial!</a>
+		<p>For some other stuff, like how to write objectorientated javascript I was following the tutorials over at <a href="http://www.codecademy.com/" target="_blank">http://www.codecademy.com/</a>, which is a really great site to learn Javascript and also other languages.</a>
+		<p>If you understand German you can also read my blogpost about this site: <a href="http://blog.platzh1rsch.ch/2012/08/pacman-in-html5-canvas.html">"Pacman in HTML5 Canvas"</a>.</p>
+		
+		<span id="audio">
+			<audio id="theme" preload="auto">
+				<source src="wav/theme.wav" type="audio/wav">
+				<source src="mp3/theme.mp3" type="audio/mpeg">
+			</audio>
+			<audio id="waka" preload="auto">
+				<source src="wav/waka.wav" type="audio/wav">
+				<source src="mp3/waka.mp3" type="audio/mpeg">
+			</audio>
+			<audio id="die" preload="auto">
+				<source src="wav/die.wav" type="audio/wav">
+				<source src="mp3/die.mp3" type="audio/mpeg">
+			</audio>
+			<audio id="powerpill" preload="auto">
+				<source src="wav/powerpill.wav" type="audio/wav">
+				<source src="mp3/powerpill.mp3" type="audio/mpeg">
+			</audio>
+		</span>
+		
+		
+	</div>
+</div>
+</div>
+</div>
+</div>
+
+	<script src="pacman-canvas.js" type="text/javascript"></script>
+
+
+</body>
+</html>
