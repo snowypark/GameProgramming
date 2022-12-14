@@ -1,8 +1,6 @@
 # GameProgramming
 ***
 초밥 게임 업그레이드
-![그림1](https://user-images.githubusercontent.com/100844814/207541544-05741f36-6be2-4f53-a4a9-2bc4502d87f5.gif)
-
 ***
 ![슬라이드1](https://user-images.githubusercontent.com/100844814/207540131-c71a16b6-2fef-4758-b60d-d37f04933215.PNG)
 ![슬라이드2](https://user-images.githubusercontent.com/100844814/207540138-e4418250-2dfe-4261-a095-0e6487682639.PNG)
