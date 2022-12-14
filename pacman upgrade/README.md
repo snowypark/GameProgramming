@@ -5,7 +5,7 @@
 [팩맨 게임 원본 깃허브](https://github.com/platzhersh/pacman-canvas)
 
 ###
-
+게임 실행
 [github.io](https://snowypark.github.io/pacmanupgrade.github.io/)
 
 ###
